@@ -36,7 +36,7 @@ export default class PersonDetails extends Component {
   render() {
     const { isLoading, person } = this.state;
     if (!person) {
-      return <span>Choose a person </span>;
+      return <Spinner />;
     }
     const spinner = isLoading ? <Spinner /> : null;
     const content = !isLoading ? <DetailsView personDetails={person} /> : null;
