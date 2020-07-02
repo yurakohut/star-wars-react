@@ -5,6 +5,8 @@ import "./app.css";
 import SwapiService from "./../../services/swapi-service";
 import ItemDetails, { Record } from "./../item-details/item-details";
 import Row from "./../row/row";
+import ItemList from "../item-list/item-list";
+import ErrorBoundry from "../error-boundry/error-boundry";
 
 export default class App extends Component {
   swapiService = new SwapiService();
@@ -23,6 +25,8 @@ export default class App extends Component {
       getStarship,
       getPersonImg,
       getStarshipImg,
+      getAllPeople,
+      getAllPlanets,
     } = this.swapiService;
 
     const personDetails = (
@@ -44,12 +48,20 @@ export default class App extends Component {
     );
 
     return (
-      <div className="app">
-        <Header />
-        {/* <RandomPlanet />
+      <ErrorBoundry>
+        <div className="app">
+          <Header />
+          {/* <RandomPlanet />
         <PeoplePage /> */}
-        <Row left={personDetails} right={starshipDetails} />
-      </div>
+          <Row left={personDetails} right={starshipDetails} />
+          <ItemList getData={getAllPeople} onItemSelected={() => {}}></ItemList>
+          <ItemList
+            getData={getAllPlanets}
+            onItemSelected={() => {}}
+          ></ItemList>
+          <ItemList />
+        </div>
+      </ErrorBoundry>
     );
   }
 }
